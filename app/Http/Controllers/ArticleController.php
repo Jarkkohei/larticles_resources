@@ -7,7 +7,7 @@ use A\Http\Requests;
 use App\Article;
 
 //  This is renamed because of the Article-model above.
-use App\Http\Resources\Article as ArticleRecource;
+use App\Http\Resources\Article as ArticleResource;
 
 class ArticleController extends Controller
 {
@@ -44,7 +44,11 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        //  Get article
+        $article = Article::findOrFail($id);
+
+        //  Return suigle article as a resource
+        return new ArticleResource($article);
     }
 
     /**

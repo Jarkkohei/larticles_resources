@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+//  This line is for getting rid of that wrapping data-object in the resources.
+//  use Illuminate\Http\Resources\Json\Resource;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //  This line is for getting rid of that wrapping data-object in the resources.
+        //  Resource::withoutWrapping();
     }
 
     /**
