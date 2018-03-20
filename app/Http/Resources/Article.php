@@ -22,4 +22,13 @@ class Article extends JsonResource
             'body' => $this->body
         ];
     }
+
+    //  Pass data to the resource-template.
+    public function with($request)
+    {
+        return [
+            'version' => '1.0.0',
+            'author_url' => url('http://google.com')
+        ];
+    }
 }

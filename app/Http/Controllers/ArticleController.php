@@ -33,7 +33,16 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //  If the method is 'put' get the article else create a new one.
+        $article = $request->isMethod('put') ? Article::findOrFail($request->article_id) : new article();
+
+        $article->id = $request->input('article_id');
+        $article->title = $request->input('title');
+        $article->body = $request->input('body');
+
+        if($article->save()) {
+            return new ArticleResource($article);
+        }
     }
 
     /**
@@ -59,6 +68,11 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //  Get article
+        $article = Article::findOrFail($id);
+
+        if($article->delete()) {
+            return new ArticleResource($article);
+        }
     }
 }
